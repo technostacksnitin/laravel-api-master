@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Requests\{{modelName}}Request;
+use App\{{modelName}};
+use DevDr\ApiCrudGenerator\Controllers\BaseApiController;
+
+class {{modelName}}Controller extends BaseApiController
+{
+    public function index({{modelName}}Request $request)
+    {
+        $limit = isset($request->limit) ? $request->limit : config('app.default_limit');
+        try{
+            ${{modelNamePluralLowerCase}} = {{modelName}}::latest();
+            $arr{{modelName}} = ${{modelNamePluralLowerCase}}->paginate($limit);
+        } catch (\Exception $exception){
+            $this->_sendErrorResponse(500);
+        }
+        $response = ['{{modelNamePluralLowerCase}}' => $arr{{modelName}}];
+        $this->_sendResponse($response, '{{modelNamePluralLowerCase}} listing Success');
+    }
+
+    public function store({{modelName}}Request $request)
+    {
+        try{
+            ${{modelNameSingularLowerCase}} = {{modelName}}::create($request->all());
+        } catch (\Exception $exception){
+            $this->_sendErrorResponse(500);
+        }
+        $response = ['{{modelNameSingularLowerCase}}' => ${{modelNameSingularLowerCase}}];
+        $this->_sendResponse($response, '{{modelNameSingularLowerCase}} created success');
+    }
+
+    public function show($id)
+    {
+        try{
+            ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($id);
+        } catch (\Exception $exception){
+            $this->_sendErrorResponse(500);
+        }
+        $response = ['{{modelNameSingularLowerCase}}' => ${{modelNameSingularLowerCase}}];
+        $this->_sendResponse($response, '{{modelNameSingularLowerCase}} found success');
+    }
+
+    public function update({{modelName}}Request $request, $id)
+    {
+        try{
+            ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($id);
+            ${{modelNameSingularLowerCase}}->update($request->all());
+        } catch (\Exception $exception){
+            $this->_sendErrorResponse(500);
+        }
+        $response = ['{{modelNameSingularLowerCase}}' => ${{modelNameSingularLowerCase}}];
+        $this->_sendResponse($response, '{{modelNameSingularLowerCase}} update success');
+    }
+
+    public function destroy($id)
+    {
+        try{
+            ${{modelNameSingularLowerCase}} = {{modelName}}::destroy($id);
+        } catch (\Exception $exception){
+            $this->_sendErrorResponse(204);
+        }
+        $response = ['{{modelNameSingularLowerCase}}' => ${{modelNameSingularLowerCase}}];
+        $this->_sendResponse($response, '{{modelNameSingularLowerCase}} delete successfully');
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "devdr/laravel-api-master",
+    "description": "Create Laravel API",
+    "authors": [
+        {
+            "name": "Hussain",
+            "email": "hussain@technostacks.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DevDr\\ApiCrudGenerator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DevDr\\ApiCrudGenerator\\": "src/"
+        }
+    }
+}
