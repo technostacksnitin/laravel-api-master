@@ -17,5 +17,6 @@
         "psr-4": {
             "DevDr\\ApiCrudGenerator\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
