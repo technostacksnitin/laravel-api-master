@@ -3,7 +3,7 @@
 ## Step 1: Install through Composer
 
 ```bash 
-composer require devdr/laravel-api-master
+composer require galaxydevs/laravel-api-master
 ```
 
 ## Step 2: Add new Service Provider in config/app.php inside the providers[] array:
